@@ -36,7 +36,8 @@ public class B2BExchangeServer {
 		sshd.setHostBasedAuthenticator(new B2BHostBasedAuthenticater());
 		sshd.setPublickeyAuthenticator(new B2BPublicKeyAuthenticater());
 		sshd.setFileSystemFactory(new VirtualFileSystemFactory());
-		
+		//help
+		//sshd.close();
 		
 		
 		/*
