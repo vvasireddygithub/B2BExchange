@@ -38,7 +38,7 @@ public class B2BExchangeServer {
 		sshd.setFileSystemFactory(new VirtualFileSystemFactory());
 		//help
 		//sshd.close();
-		
+       //status
 		
 		/*
 		 * System.setProperty(IoServiceFactoryFactory.class.getName(),
