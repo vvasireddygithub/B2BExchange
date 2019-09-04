@@ -31,8 +31,11 @@ public class B2BExchangeServer {
 		sshd.setHost("DESKTOP-7591820");
 		sshd.setPasswordAuthenticator(new B2BPasswordAuthenticater());
 		sshd.setKeyboardInteractiveAuthenticator(new DefaultKeyboardInteractiveAuthenticator());
-		sshd.setPublickeyAuthenticator(new AuthorizedKeysAuthenticator(Paths.get("C:\\Apps\\sshd\\authorized_keys")));
+		//sshd.setPublickeyAuthenticator(new AuthorizedKeysAuthenticator(Paths.get("C:\\Apps\\sshd\\authorized_keys")));
 		sshd.setHostBasedAuthenticator(new B2BHostBasedAuthenticater());
+		sshd.setPublickeyAuthenticator(new B2BPublicKeyAuthenticater());
+		
+		
 		
 		/*
 		 * System.setProperty(IoServiceFactoryFactory.class.getName(),
