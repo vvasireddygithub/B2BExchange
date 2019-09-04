@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-cli"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-contrib"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-git"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-ldap"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-openpgp"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-osgi"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-putty"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-scp"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-sftp"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sshd-spring-sftp"/>
+	<classpathentry kind="src" path="/sshd-mina"/>
+	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/org/slf4j/slf4j-api/1.7.28/slf4j-api-1.7.28.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
