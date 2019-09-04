@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.sshd.client.auth.hostbased.UserAuthHostBased;
+import org.apache.sshd.common.file.virtualfs.VirtualFileSystemFactory;
 import org.apache.sshd.common.io.IoServiceFactoryFactory;
 import org.apache.sshd.common.io.mina.MinaServiceFactoryFactory;
 import org.apache.sshd.server.SshServer;
@@ -34,6 +35,7 @@ public class B2BExchangeServer {
 		//sshd.setPublickeyAuthenticator(new AuthorizedKeysAuthenticator(Paths.get("C:\\Apps\\sshd\\authorized_keys")));
 		sshd.setHostBasedAuthenticator(new B2BHostBasedAuthenticater());
 		sshd.setPublickeyAuthenticator(new B2BPublicKeyAuthenticater());
+		sshd.setFileSystemFactory(new VirtualFileSystemFactory());
 		
 		
 		
