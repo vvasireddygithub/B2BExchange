@@ -11,7 +11,7 @@ public class B2BPublicKeyAuthenticater implements PublickeyAuthenticator {
 	@Override
 	public boolean authenticate(String username, PublicKey key, ServerSession session) throws AsyncAuthException {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }
