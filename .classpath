@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="C:/Apps/sshd/sshd-common/target/sshd-common-2.3.1-SNAPSHOT.jar" sourcepath="/sshd-common"/>
 	<classpathentry kind="lib" path="C:/Apps/sshd/sshd-core/target/sshd-core-2.3.1-SNAPSHOT.jar" sourcepath="/sshd-core"/>
 	<classpathentry kind="lib" path="C:/Apps/sshd/sshd-scp/target/sshd-scp-2.3.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Apps/sshd/sshd-sftp/target/sshd-sftp-2.3.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Apps/sshd/sshd-sftp/target/sshd-sftp-2.3.1-SNAPSHOT.jar" sourcepath="/sshd-sftp"/>
 	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/org/apache/mina/mina-core/2.0.21/mina-core-2.0.21.jar"/>
 	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.9/jackson-core-2.9.9.jar"/>

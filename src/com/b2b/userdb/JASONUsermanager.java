@@ -37,6 +37,9 @@ public class JASONUsermanager {
 		// Java object to JSON file
 		try {
 			mapper.writeValue(new File("users.json"), users);
+			//mapper.updateValue(valueToUpdate, overrides)
+			//mapper.updateValue(valueToUpdate, overrides)
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

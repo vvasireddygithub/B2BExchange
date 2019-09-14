@@ -65,7 +65,7 @@ public class B2BUserProfileManager {
 	}
 	public static void main(String... args)
 	{
-		//JASONUsermanager.initUserDB();
+		JASONUsermanager.initUserDB();
 		JASONUsermanager.readUsers();
 		
 	}
