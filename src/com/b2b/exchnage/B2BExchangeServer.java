@@ -3,23 +3,23 @@ package com.b2b.exchnage;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
+import org.apache.sshd.client.ClientFactoryManager;
+import org.apache.sshd.common.FactoryManager;
+import org.apache.sshd.common.PropertyResolverUtils;
 //import org.apache.log4j.BasicConfigurator;
 import org.apache.sshd.common.file.virtualfs.VirtualFileSystemFactory;
 import org.apache.sshd.common.io.IoServiceFactoryFactory;
 import org.apache.sshd.common.io.mina.MinaServiceFactoryFactory;
 import org.apache.sshd.server.SshServer;
-import org.apache.sshd.server.auth.UserAuthFactory;
-import org.apache.sshd.server.auth.hostbased.StaticHostBasedAuthenticator;
 import org.apache.sshd.server.auth.keyboard.DefaultKeyboardInteractiveAuthenticator;
-import org.apache.sshd.server.auth.pubkey.UserAuthPublicKeyFactory;
 import org.apache.sshd.server.config.keys.AuthorizedKeysAuthenticator;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.scp.ScpCommandFactory;
 import org.apache.sshd.server.subsystem.sftp.SftpSubsystemFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.event.Level;
 
 public class B2BExchangeServer {
 	protected final Logger log = LoggerFactory.getLogger(B2BExchangeServer.class.getName());
@@ -56,8 +56,9 @@ public class B2BExchangeServer {
 		sshd.setPasswordAuthenticator(new B2BPasswordAuthenticater());
 		sshd.setKeyboardInteractiveAuthenticator(new DefaultKeyboardInteractiveAuthenticator());
 		sshd.setPublickeyAuthenticator(new
-		AuthorizedKeysAuthenticator(Paths.get(B2BConstants.AUTHORIZED_KEYS)));
+		AuthorizedKeysAuthenticator(Paths.get(B2BServerPropertiesManager.get(B2BConstants.AUTHORIZED_KEYS,"authorized_keys"))));
 	    sshd.setHostBasedAuthenticator(new B2BHostBasedAuthenticater());
+	    
 
 		//sshd.setHostBasedAuthenticator(new StaticHostBasedAuthenticator(true));
 
@@ -71,6 +72,7 @@ public class B2BExchangeServer {
 		
 
 		String rootFileDir = "C:\\Users\\sshdusers";
+		
 		VirtualFileSystemFactory vfSysFactory = new VirtualFileSystemFactory();
 		vfSysFactory.setDefaultHomeDir(Paths.get(rootFileDir));
 		
@@ -86,8 +88,29 @@ public class B2BExchangeServer {
 		sshd.setCommandFactory(scpCommand);
 
 		SftpSubsystemFactory sftpFactory = new SftpSubsystemFactory();
+		
+		sftpFactory.addSftpEventListener(new B2BDocumentExchangeEventListener());
 		sshd.setSubsystemFactories(Collections.singletonList(sftpFactory));
-
+		//FactoryManager.DEFAULT_IDLE_TIMEOUT
+		
+		PropertyResolverUtils.updateProperty(
+	            sshd, FactoryManager.IDLE_TIMEOUT, TimeUnit.SECONDS.toMillis(120L));
+		
+		PropertyResolverUtils.updateProperty(
+	            sshd, FactoryManager.DISCONNECT_TIMEOUT, TimeUnit.SECONDS.toMillis(120L));
+		
+		PropertyResolverUtils.updateProperty(
+	            sshd, FactoryManager.AUTH_TIMEOUT, TimeUnit.SECONDS.toMillis(120L));
+		
+		PropertyResolverUtils.updateProperty(
+	            sshd, FactoryManager.CHANNEL_CLOSE_TIMEOUT, TimeUnit.SECONDS.toMillis(120L));
+		
+		
+		
+	       // PropertyResolverUtils.updateProperty(
+	       //     client, ClientFactoryManager.HEARTBEAT_INTERVAL, ClientFactoryManager.DEFAULT_HEARTBEAT_INTERVAL);
+		
+	
 		// sshd.setSubsystemFactories( Collections.<NamedFactory<Command>>singletonList(
 		// new SftpSubsystemFactory() ) );
 
