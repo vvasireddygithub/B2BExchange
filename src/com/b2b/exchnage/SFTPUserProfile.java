@@ -1,11 +1,12 @@
 package com.b2b.exchnage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SFTPUserProfile {
 	private String userid;
 	private String password;
-	private ArrayList<String> publickeys;
+	private String[] publickeys;
 	private String homeFolder;
 	public String getUserid() {
 		return userid;
@@ -19,18 +20,19 @@ public class SFTPUserProfile {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public ArrayList<String> getPublickeys() {
+	public String[] getPublickeys() {
 		return publickeys;
 	}
-	public void setPublickeys(ArrayList<String> publickeys) {
+	public void setPublickeys(String[] publickeys) {
 		this.publickeys = publickeys;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return "SFTPUserProfile [userid=" + userid + ", publickeys="
-				+ publickeys.toString() + ", homeFolder=" + homeFolder + "]";
+		return "SFTPUserProfile [userid=" + userid + ", password=" + password + ", publickeys="
+				+ Arrays.toString(publickeys) + ", homeFolder=" + homeFolder + "]";
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
