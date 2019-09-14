@@ -9,9 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class B2BServerPropertiesManager {
-	public static final String server_port="port";
-	public static final String server_host="host";
-	public static final String hostkeyprovider="hostkeyprovider";
+	
 
 	private static final Logger log = LoggerFactory.getLogger(B2BServerPropertiesManager.class);
 

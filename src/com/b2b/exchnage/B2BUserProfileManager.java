@@ -7,6 +7,8 @@ import org.apache.sshd.common.file.virtualfs.VirtualFileSystemFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.b2b.userdb.JASONUsermanager;
+
 public class B2BUserProfileManager {
 	private static final Logger log = LoggerFactory.getLogger(B2BUserProfileManager.class.getName());
 
@@ -17,6 +19,7 @@ public class B2BUserProfileManager {
 
 	public static void setVFSFactory(VirtualFileSystemFactory vfSysFactor) {
 		B2BUserProfileManager.vfSysFactory = vfSysFactor;
+		B2BUserProfileManager.initializeUserDatabase();
 	}
 
 	public static void setUserPassword(String userid, String password) {
@@ -47,7 +50,7 @@ public class B2BUserProfileManager {
 	}
 
 	public static void initializeUserDatabase() {
-		setUserHomeFolder("venu100", "C:\\Users\\harip\\SFTP100");
+		setUserHomeFolder("venu100", "C:\\Users\\harip\\SFTP");
 		setUserHomeFolder("venu101", "C:\\Users\\harip\\SFTP101");
 		setUserHomeFolder("venu102", "C:\\Users\\harip\\SFTP102");
 		setUserHomeFolder("venu103", "C:\\Users\\harip\\SFTP103");
@@ -60,5 +63,12 @@ public class B2BUserProfileManager {
 		setUserPassword("venu103", "venu104");
 		setUserPassword("venu105", "venu105");
 	}
+	public static void main(String... args)
+	{
+		//JASONUsermanager.initUserDB();
+		JASONUsermanager.readUsers();
+		
+	}
+	
 
 }

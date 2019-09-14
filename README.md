@@ -11,6 +11,14 @@ sshd-scp-2.3.1-SNAPSHOT.jar
 slf4j-api-1.7.28.jar
 slf4j-jdk14-1.7.28.jar
 
+Build GSON
+============
+
+git clone https://github.com/google/gson
+
+mvn package
+
+
 
 
 

@@ -30,23 +30,24 @@ public class B2BExchangeServer {
 		//System.setProperty("log4j.configuration", "C:\\Users\\harip\\eclipse-workspace\\B2BExchange\\log4j.properties");
 		
 		
-		System.setProperty("java.util.logging.config.file", "C:\\\\Users\\\\harip\\\\eclipse-workspace\\\\B2BExchange\\\\jdkutillogging.properties");
+		//System.setProperty("java.util.logging.config.file", "C:\\\\Users\\\\harip\\\\eclipse-workspace\\\\B2BExchange\\\\jdkutillogging.properties");
 				
 		 
 		// System.out.println( System.getProperty("log4j.configuration"));
 		 
 		// BasicConfigurator.configure();
 		
-		String filePath = args[0]; // Properties files pth
-		B2BServerPropertiesManager.LoadProperties(filePath);
+		String propertiFsfilePath = args[0]; // Properties files pth
+		B2BServerPropertiesManager.LoadProperties(propertiFsfilePath);
+		
 		SshServer sshd = SshServer.setUpDefaultServer();
 	
-		sshd.setPort(Integer.parseInt(B2BServerPropertiesManager.get(B2BServerPropertiesManager.server_port, "10022")));
+		sshd.setPort(Integer.parseInt(B2BServerPropertiesManager.get(B2BConstants.SERVER_PORT, "10022")));
 		
 		
-		sshd.setHost(B2BServerPropertiesManager.get(B2BServerPropertiesManager.server_host,"localhost"));
+		sshd.setHost(B2BServerPropertiesManager.get(B2BConstants.SERVER_HOST,"localhost"));
 		sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(Paths.get(B2BServerPropertiesManager.get(
-				B2BServerPropertiesManager.hostkeyprovider,"hostkey.ser"))));
+				B2BConstants.HOSTKEY_PROVIDER,"hostkey.ser"))));
 
 		System.setProperty(IoServiceFactoryFactory.class.getName(), MinaServiceFactoryFactory.class.getName());
 
@@ -55,29 +56,28 @@ public class B2BExchangeServer {
 		sshd.setPasswordAuthenticator(new B2BPasswordAuthenticater());
 		sshd.setKeyboardInteractiveAuthenticator(new DefaultKeyboardInteractiveAuthenticator());
 		sshd.setPublickeyAuthenticator(new
-		AuthorizedKeysAuthenticator(Paths.get("C:\\Apps\\sshd\\authorized_keys")));
+		AuthorizedKeysAuthenticator(Paths.get(B2BConstants.AUTHORIZED_KEYS)));
 	    sshd.setHostBasedAuthenticator(new B2BHostBasedAuthenticater());
 
 		//sshd.setHostBasedAuthenticator(new StaticHostBasedAuthenticator(true));
 
-		//sshd.setPublickeyAuthenticator(new B2BPublicKeyAuthenticater());
+		//sshd.setPublickeyAuthenticator(new B2BPublicKeyAuthenticater());  //work on this later
 
 		//UserAuthFactory userAuthFactory = new UserAuthPublicKeyFactory();
 		//sshd.setUserAuthFactories(Collections.singletonList(userAuthFactory));
 		
 		
-		// Sets the logging level to INFO
-		Logger root = (Logger)LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-		//root.(Level.TRACE);
+		
 		
 
 		String rootFileDir = "C:\\Users\\sshdusers";
 		VirtualFileSystemFactory vfSysFactory = new VirtualFileSystemFactory();
 		vfSysFactory.setDefaultHomeDir(Paths.get(rootFileDir));
 		
-		vfSysFactory.setUserHomeDir("venu100", Paths.get("C:\\Users\\harip\\SFTP"));
+		//vfSysFactory.setUserHomeDir("venu100", Paths.get("C:\\Users\\harip\\SFTP"));
 		
 		B2BUserProfileManager.setVFSFactory(vfSysFactory);
+		
 		
 		sshd.setFileSystemFactory(vfSysFactory);
 
