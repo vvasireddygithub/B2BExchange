@@ -77,6 +77,8 @@ public class B2BExchangeServer {
 		
 		vfSysFactory.setUserHomeDir("venu100", Paths.get("C:\\Users\\harip\\SFTP"));
 		
+		B2BUserProfileManager.setVFSFactory(vfSysFactory);
+		
 		sshd.setFileSystemFactory(vfSysFactory);
 
 	
