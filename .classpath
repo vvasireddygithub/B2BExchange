@@ -17,5 +17,15 @@
 	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.9/jackson-core-2.9.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.9/jackson-databind-2.9.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/harip/.m2/repository/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar" sourcepath="C:/Users/harip/.m2/repository/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.google.code.gson"/>
+			<attribute name="maven.artifactId" value="gson"/>
+			<attribute name="maven.version" value="2.8.5"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -3,6 +3,7 @@ package com.b2b.exchnage;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.sshd.client.ClientFactoryManager;
@@ -54,7 +55,7 @@ public class B2BExchangeServer {
 		//System.out.println(IoServiceFactoryFactory.class.getName());
 		
 		sshd.setPasswordAuthenticator(new B2BPasswordAuthenticater());
-		sshd.setKeyboardInteractiveAuthenticator(new DefaultKeyboardInteractiveAuthenticator());
+		//sshd.setKeyboardInteractiveAuthenticator(new DefaultKeyboardInteractiveAuthenticator());
 		sshd.setPublickeyAuthenticator(new
 		AuthorizedKeysAuthenticator(Paths.get(B2BServerPropertiesManager.get(B2BConstants.AUTHORIZED_KEYS,"authorized_keys"))));
 	    sshd.setHostBasedAuthenticator(new B2BHostBasedAuthenticater());
@@ -105,7 +106,10 @@ public class B2BExchangeServer {
 		PropertyResolverUtils.updateProperty(
 	            sshd, FactoryManager.CHANNEL_CLOSE_TIMEOUT, TimeUnit.SECONDS.toMillis(120L));
 		
+		PropertyResolverUtils.updateProperty(
+	            sshd, FactoryManager.AUTH_TIMEOUT, TimeUnit.SECONDS.toMillis(120L));
 		
+			
 		
 	       // PropertyResolverUtils.updateProperty(
 	       //     client, ClientFactoryManager.HEARTBEAT_INTERVAL, ClientFactoryManager.DEFAULT_HEARTBEAT_INTERVAL);
