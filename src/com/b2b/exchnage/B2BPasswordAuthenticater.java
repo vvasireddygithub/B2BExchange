@@ -16,7 +16,9 @@ public class B2BPasswordAuthenticater  implements PasswordAuthenticator {
 			throws PasswordChangeRequiredException, AsyncAuthException {
 		// TODO Auto-generated method stub
 		log.info("username:" + username + "," + "operation:" + "LOGIN_USING_PASSWORD" + "," + "remoteip:" + session.getRemoteAddress());
-		return true;
+		
+		return B2BUserProfileManager.checkpassword(username, password);
+		//return true;
 	}
 
 }

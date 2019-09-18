@@ -1,9 +1,14 @@
 package com.b2b.exchnage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SFTPUserProfile {
+public class SFTPUserProfile implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2299110523852631399L;
 	private String userid;
 	private String password;
 	private String[] publickeys;
