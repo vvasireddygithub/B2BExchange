@@ -59,5 +59,8 @@ public class GSONUserDB {
 		
 		
 	}
+	public static void loadUserprofiles() {
+		
+	}
 
 }
