@@ -1,4 +1,5 @@
 # B2BExchange
+<<<<<<< Updated upstream
 Customize SSHD server for Business Transmissions
 JDK Utils logging added
 
@@ -23,3 +24,7 @@ mvn package
 
 
 
+=======
+ B2BExchange
+this is comment
+>>>>>>> Stashed changes
