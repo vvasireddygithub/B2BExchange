@@ -3,10 +3,8 @@ package com.b2b.exchnage;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Collections;
-import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.sshd.client.ClientFactoryManager;
 import org.apache.sshd.common.FactoryManager;
 import org.apache.sshd.common.PropertyResolverUtils;
 //import org.apache.log4j.BasicConfigurator;
@@ -14,7 +12,6 @@ import org.apache.sshd.common.file.virtualfs.VirtualFileSystemFactory;
 import org.apache.sshd.common.io.IoServiceFactoryFactory;
 import org.apache.sshd.common.io.mina.MinaServiceFactoryFactory;
 import org.apache.sshd.server.SshServer;
-import org.apache.sshd.server.auth.keyboard.DefaultKeyboardInteractiveAuthenticator;
 import org.apache.sshd.server.config.keys.AuthorizedKeysAuthenticator;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.scp.ScpCommandFactory;
@@ -22,6 +19,15 @@ import org.apache.sshd.server.subsystem.sftp.SftpSubsystemFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+/**
+ * This is the Main class
+ * Implemented with Apache MINA SSHD libraries
+ * Supporting SFTP & SCP file transfer secured protocols
+ * 
+ * @author harip
+ *
+ */
 public class B2BExchangeServer {
 	protected final Logger log = LoggerFactory.getLogger(B2BExchangeServer.class.getName());
 
@@ -38,7 +44,8 @@ public class B2BExchangeServer {
 		 
 		// BasicConfigurator.configure();
 		
-		String propertiFsfilePath = args[0]; // Properties files pth
+		String propertiFsfilePath = args[0]; // Properties files path - B2BExchange.properties
+		
 		B2BServerPropertiesManager.LoadProperties(propertiFsfilePath);
 		
 		SshServer sshd = SshServer.setUpDefaultServer();
