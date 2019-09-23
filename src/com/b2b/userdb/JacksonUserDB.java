@@ -99,6 +99,9 @@ public class JacksonUserDB {
 			mapper.writeValue(new File(B2BServerPropertiesManager.get(B2BConstants.USERS_JSON, "users.json")),
 					userArray);
 			
+			java.lang.reflect.Type collectionType = new TypeToken<ConcurrentHashMap<String,SFTPUserProfile>>(){}.getType();
+			
+
 			// mapper.updateValue(valueToUpdate, overrides)
 			// mapper.updateValue(valueToUpdate, overrides)
 
@@ -107,6 +110,15 @@ public class JacksonUserDB {
 			log.error("Unable to write to file", ex);
 		}
 
+	}
+	
+	public static void loadProfileConcurrentHashMap()
+	{
+		
+		java.lang.reflect.Type collectionType = new TypeToken<ConcurrentHashMap<String,SFTPUserProfile>>(){}.getType();
+		ObjectMapper mapper = new ObjectMapper();
+		users= mapper.readValue("new File("C:\\Users\\harip\\eclipse-workspace\\B2BExchange\\users.json"), collectionType)
+		
 	}
 
 	public static void loadUserProfiles() {
