@@ -20,6 +20,9 @@ import com.b2b.exchnage.SFTPUserProfile;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.MapType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -59,7 +62,8 @@ public class JacksonUserDB {
 		if (pubkeys != null && pubkeys.length > 0)
 			user1.setPublickeys(new String[] { "key1", "key2" });
 		users.put(userid, user1);
-		persistUserProfiles();
+		//persistUserProfiles();
+		loadProfileConcurrentHashMap();
 
 	}
 
@@ -80,7 +84,19 @@ public class JacksonUserDB {
 
 		user2.setPublickeys(new String[] { "key3", "key4" });
 		users.put("venu101", user2);
-		persistUserProfiles();
+		//persistUserProfiles();
+		persistUserProfilesmap();
+	}
+	
+	public static void persistUserProfilesmap() {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(new File(B2BServerPropertiesManager.get(B2BConstants.USERS_JSON, "users.json")),
+					users);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void persistUserProfiles() {
@@ -115,10 +131,24 @@ public class JacksonUserDB {
 	public static void loadProfileConcurrentHashMap()
 	{
 		
-		java.lang.reflect.Type collectionType = new TypeToken<ConcurrentHashMap<String,SFTPUserProfile>>(){}.getType();
-		ObjectMapper mapper = new ObjectMapper();
-		users= mapper.readValue("new File("C:\\Users\\harip\\eclipse-workspace\\B2BExchange\\users.json"), collectionType)
+		//java.lang.reflect.Type collectionType = new TypeToken<ConcurrentHashMap<String,SFTPUserProfile>>(){}.getType();
 		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		TypeFactory typeFactory = mapper.getTypeFactory();
+	
+		MapType mapType = typeFactory.constructMapType(ConcurrentHashMap.class, String.class, SFTPUserProfile.class);
+		try {
+			ConcurrentHashMap<String, SFTPUserProfile> users = 
+					mapper.readValue(new File("C:\\Users\\harip\\eclipse-workspace\\B2BExchange\\users.json"), mapType);
+			System.out.println(users.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	   
+		 
+			
 	}
 
 	public static void loadUserProfiles() {
@@ -166,7 +196,9 @@ public class JacksonUserDB {
 
 	public static void main(String[] args) {
 		initUserProfiles();
-		loadUserProfiles();
+		//loadUserProfiles();
+		
+		loadProfileConcurrentHashMap();
 	}
 
 }
