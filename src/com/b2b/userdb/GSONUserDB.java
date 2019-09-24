@@ -62,7 +62,7 @@ public class GSONUserDB {
 		String myjson = gson.toJson(users);
 		System.out.println(myjson);
 		
-		persistUserDB(myjson);
+		DBUtil.persistUserDB(myjson);
 		
 		System.out.println(gson.toJson(1));            // ==> 1
 		System.out.println(gson.toJson("abcd"));       // ==> "abcd"
@@ -96,28 +96,7 @@ public class GSONUserDB {
 		
 	}
 	
-	private static void persistUserDB(String jason)
-	{
-		String userDBfileName = B2BServerPropertiesManager.get(B2BConstants.USERS_JSON, "C:\\\\Users\\\\harip\\\\eclipse-workspace\\\\B2BExchange\\\\users_json");
-		
-		
-		 boolean bLocked = false;
-		try (RandomAccessFile fis = new RandomAccessFile(userDBfileName, "rw")) {
-			FileLock lck = fis.getChannel().lock();
-			
-			if (lck.isValid()) {
-				fis.seek(0l);
-				fis.writeChars(jason);
-				//fis.writeChars(jason);
-				
-			}
-			lck.release();
-		} catch (Exception ex) {
-			      bLocked = true;
-			      ex.printStackTrace();
-			    }
-		
-	}
+	
 	
 	
 	public static void loadUserprofiles() {
