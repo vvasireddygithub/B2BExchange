@@ -140,7 +140,7 @@ public class JacksonUserDB {
 	
 		MapType mapType = typeFactory.constructMapType(ConcurrentHashMap.class, String.class, SFTPUserProfile.class);
 		try {
-			ConcurrentHashMap<String, SFTPUserProfile> users = 
+			 users = 
 					mapper.readValue(new File("C:\\Users\\harip\\eclipse-workspace\\B2BExchange\\users.json"), mapType);
 			System.out.println(users.toString());
 		} catch (IOException e) {

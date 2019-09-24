@@ -22,7 +22,8 @@ public class B2BUserProfileManager {
 
 	public static void setVFSFactory(VirtualFileSystemFactory vfSysFactor) {
 		B2BUserProfileManager.vfSysFactory = vfSysFactor;
-		JacksonUserDB.loadUserProfiles();
+		//JacksonUserDB.loadUserProfiles();
+		JacksonUserDB.loadProfileConcurrentHashMap();
 		userprofiles = JacksonUserDB.getUserProfiles();
 		setHomeFolders();
 	}
@@ -44,7 +45,7 @@ public class B2BUserProfileManager {
 	}
 
 	public static boolean checkpassword(String userid, String password) {
-		log.debug(" CryptUtl.decrypt(userprofiles.get(userid).getPassword(),\"idievarikitelustidi\") " + CryptUtl.decrypt(userprofiles.get(userid).getPassword(),"idievarikitelustidi"));
+	//	log.debug(" CryptUtl.decrypt(userprofiles.get(userid).getPassword(),\"idievarikitelustidi\") " + CryptUtl.decrypt(userprofiles.get(userid).getPassword(),"idievarikitelustidi"));
 		if (CryptUtl.decrypt(userprofiles.get(userid).getPassword(),"idievarikitelustidi").equals(password))
 			return true;
 		else
